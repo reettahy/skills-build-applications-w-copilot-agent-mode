@@ -25,6 +25,11 @@ export async function createActivity(input: unknown) {
     throw createError('Missing required fields: userId, teamId, type, minutes', 400);
   }
 
+  // Validate minutes is a number and positive
+  if (typeof minutes !== 'number' || minutes < 0) {
+    throw createError('minutes must be a non-negative number', 400);
+  }
+
   // Validate ObjectId format
   if (!isValidObjectId(userId) || !isValidObjectId(teamId)) {
     throw createError('userId and teamId must be valid MongoDB IDs', 400);
@@ -41,7 +46,7 @@ export async function createActivity(input: unknown) {
   }
 
   // Create activity with computed fields
-  const points = Math.round((minutes as number) / 10) || 1;
+  const points = Math.round(minutes / 10) || 1;
   const activity = await Activity.create({
     user: userId,
     team: teamId,

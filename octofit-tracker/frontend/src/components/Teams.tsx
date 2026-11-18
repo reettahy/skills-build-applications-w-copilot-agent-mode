@@ -65,8 +65,8 @@ export default function Teams() {
               <strong>{team.name}</strong> ({team.mascot})
               {team.members.length > 0 && (
                 <ul className="list-unstyled ms-3 small">
-                  {team.members.map((member, i) => (
-                    <li key={i}>{member}</li>
+                  {team.members.map((member) => (
+                    <li key={member}>{member}</li>
                   ))}
                 </ul>
               )}

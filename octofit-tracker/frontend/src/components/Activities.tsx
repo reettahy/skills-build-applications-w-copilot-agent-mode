@@ -3,7 +3,7 @@ import { getJson } from '../api/client.js';
 import { CapabilityCard } from './CapabilityCard.js';
 
 type Activity = {
-  _id?: string;
+  _id: string;
   user?: string;
   team?: string;
   type: string;
